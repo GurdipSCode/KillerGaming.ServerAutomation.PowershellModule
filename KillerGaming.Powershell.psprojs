@@ -1,0 +1,16 @@
+﻿<ProjectState>
+  <Version>1.0</Version>
+  <FileID>88122181-ac71-4d75-9482-500be200a535</FileID>
+  <OpenFolders />
+  <OpenFiles>
+    <File>Test-Module.ps1</File>
+    <File>Start-Vm.ps1</File>
+    <File>Find-HyperVHost.ps1</File>
+    <File>KillerGaming.Powershell.psm1</File>
+    <File>KillerGaming.Powershell.psd1</File>
+    <File>New-Vm.ps1</File>
+    <File>Get-SCVMMHealth.ps1</File>
+    <File>Set-VMNote.ps1</File>
+    <File>Get-HypervHealth.p1.ps1</File>
+  </OpenFiles>
+</ProjectState>
