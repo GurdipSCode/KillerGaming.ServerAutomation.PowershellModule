@@ -13,8 +13,21 @@
 
 foreach ($hypervHost in $hypervHosts)
 {
+	$TestPath = Test-Path "\\$Server\c$"
+	
+	If ($TestPath -match "True")
+	{
+		
+		New-PSSession -ComputerName $hypervHost
+	}
+	
+	# Check service status
+	Get-Service HyperV | %{ if ($_.Status -eq "Stopped") {  } }
+	
+	# Get memory free
+	$os = Get-Ciminstance Win32_OperatingSystem
+	$pctFree = [math]::Round(($os.FreePhysicalMemory/$os.TotalVisibleMemorySize) * 100, 2)
 	
 	
-	New-PSSession -ComputerName $hypervHost
 	
 }

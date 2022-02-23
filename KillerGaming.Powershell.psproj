@@ -2,18 +2,29 @@
   <Version>2.1</Version>
   <FileID>88122181-ac71-4d75-9482-500be200a535</FileID>
   <ProjectType>1</ProjectType>
-  <Folders />
+  <Folders>
+    <Folder>Private</Folder>
+    <Folder>Public</Folder>
+    <Folder>Tests</Folder>
+  </Folders>
   <Files>
     <File Build="2">KillerGaming.Powershell.psd1</File>
     <File Build="0" ExportFunctions="True">KillerGaming.Powershell.psm1</File>
     <File Build="1" Shared="False" ReferenceFunction="Invoke-Test-Module_ps1" ExportFunctions="False">Test-Module.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Start-Vm_ps1" ExportFunctions="False">Start-Vm.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Find-HyperVHosts_ps1" ExportFunctions="False">Find-HyperVHosts.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-New-Vm_ps1" ExportFunctions="False">New-Vm.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-SCVMMHealth_ps1" ExportFunctions="False">Get-SCVMMHealth.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Set-VMNote_ps1" ExportFunctions="False">Set-VMNote.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-HypervHealth_p1_ps1" ExportFunctions="False">Get-HypervHealth.p1.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-VMStats_ps1" ExportFunctions="False">Get-VMStats.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Start-Vm_ps1" ExportFunctions="False">Public\Start-Vm.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Find-HyperVHosts_ps1" ExportFunctions="False">Public\Find-HyperVHosts.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-New-Vm_ps1" ExportFunctions="False">Public\New-Vm.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-SCVMMHealth_ps1" ExportFunctions="False">Public\Get-SCVMMHealth.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Set-VMNote_ps1" ExportFunctions="False">Public\Set-VMNote.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-VMStats_ps1" ExportFunctions="False">Public\Get-VMStats.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Test-RunningAsAdmin_ps1" ExportFunctions="False">Private\Test-RunningAsAdmin.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-HypervHealth_ps1" ExportFunctions="False">Public\Get-HypervHealth.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-Test-IsCluster_ps1" ExportFunctions="False">Private\Test-IsCluster.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-build_ps1" ExportFunctions="False">build.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-psake_ps1" ExportFunctions="False">psake.ps1</File>
+    <File Build="2">appveyor.yaml</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-appveyor_pester_ps1" ExportFunctions="False">Tests\appveyor.pester.ps1</File>
+    <File Build="2" Shared="True" ReferenceFunction="Invoke-KillerGaming_Powershell_Tests_ps1" ExportFunctions="False">Tests\KillerGaming.Powershell.Tests.ps1</File>
   </Files>
   <StartupScript>Test-Module.ps1</StartupScript>
 </Project>

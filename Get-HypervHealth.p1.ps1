@@ -16,13 +16,30 @@ foreach ($hypervHost in $hypervHosts)
 	$TestPath = Test-Path "\\$Server\c$"
 	
 	If ($TestPath -match "True")
-	{
-		
-		New-PSSession -ComputerName $hypervHost
+	{		
+		New-PSSession -ComputerName $hypervHost -Credential (Get-Credential)
+	}
+	
+	$myHashtable = @{
+		Memory	 = 'Kevin'
+		CPU 	 = 'PowerShell'
+		Service = 'Texas'
+		Storage = ''
+		Connectivity = ''
 	}
 	
 	# Check service status
-	Get-Service HyperV | %{ if ($_.Status -eq "Stopped") {  } }
+	Get-Service HyperV | %{
+		if ($_.Status -eq "Stopped")
+		{
+			$myHashtable.Service = 'Degraded'
+		}
+		
+		elseif ($_.Status -eq 'Running')
+		{
+			$myHashtable.Service = 'Good'
+		}
+	}
 	
 	# Get memory free
 	$os = Get-Ciminstance Win32_OperatingSystem
