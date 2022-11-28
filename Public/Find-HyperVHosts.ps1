@@ -11,22 +11,23 @@
 		A description of the file.
 #>
 
-# Ensure that AD management module is available for PS Session
-if (!(get-module -name "ActiveDirectory"))
-{
-	Add-WindowsFeature RSAT-AD-PowerShell | out-null;
-	import-module -name "ActiveDirectory" -DisableNameChecking | out-null;
-}
 
-function List-hyperVHosts
+function List-HyperVHosts
 {
+	
+	
+	
+	
 	[cmdletbinding()]
 	param (
-		[string]$forest
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new VMM Server")]
+		[ValidateNotNullOrEmpty()]
+		[string]$vmmServer
 	)
 	try
 	{
-		Import-Module ActiveDirectory -ErrorAction Stop
+		
+		Get-SCVMHost -VMMServer $vmmServer | select Name, OperatingSystem | ConvertTo-Json
 	}
 	catch
 	{
@@ -34,58 +35,5 @@ function List-hyperVHosts
 		break;
 	}
 	
-	$domains = (Get-ADForest -Identity $forest).Domains
-	foreach ($domain in $domains)
-	{
-		#"$domain`: `n"
-		[string]$dc = (get-addomaincontroller -DomainName $domain -Discover -NextClosestSite).HostName
-		try
-		{
-			$hyperVs = Get-ADObject -Server $dc -Filter 'ObjectClass -eq "serviceConnectionPoint" -and Name -eq "Microsoft Hyper-V"' -ErrorAction Stop;
-		}
-		
-		catch
-		{
-			"Failed to query $dc of $domain";
-		}
-		foreach ($hyperV in $hyperVs)
-		{
-			$x = $hyperV.DistinguishedName.split(",")
-			$HypervDN = $x[1 .. $x.Count] -join ","
-			
-			if (!($HypervDN -match "CN=LostAndFound"))
-			{
-				$Comp = Get-ADComputer -Id $HypervDN -Prop *
-				$OutputObj = New-Object PSObject -Prop (
-					@{
-						HyperVName = $Comp.Name
-						OSVersion  = $($comp.operatingSystem) #
-						IPv4Address = $Comp.IPv4Address
-					})
-				$OutputObj
-			}
-		}
-	}
 }
-
-function listForests
-{
-	$GLOBAL:forests = Get-ADForest | select Name;
-	if ($forests.length -gt 1)
-	{
-		#for ($i=0;$i -lt $forests.length;$i++){$forests[$i].Name;}
-		$forests | %{ $_.Name; }
-	}
-	else
-	{
-		$forests.Name;
-	}
-}
-
-function listHyperVHostsInForests
-{
-	listForests | %{ List-HyperVHosts $_ }
-}
-
-listHyperVHostsInForests
 

@@ -2,36 +2,32 @@
 {
 	[cmdletbinding(SupportsShouldProcess)]
 	Param (
-		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new virtual machine")]
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of your new virtual machine")]
 		[ValidateNotNullOrEmpty()]
 		[string]$Name,
-		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the type of game server size")]
-		[string]$VMType,
+		[ValidateSet("Small", "Medium", "Large")]
+		[string]$VMType = "Small",
 		[switch]$Passthru
 	)
 	
 	Write-Verbose "Creating new $VMType virtual machine"
 	#universal settings regardless of type
 	
-
+	#the ISO for installing Windows 2012
+	$ISO = "G:\iso\9200.16384.WIN8_RTM.120725-1247_X64FRE_SERVER_EVAL_EN-US-HRM_SSS_X64FREE_EN-US_DV5.ISO"
 	
-	$SCVMMHost = [System.Environment]::GetEnvironmentVariable('SCVMMHost', 'Machine')
-	$VMTemplate = [System.Environment]::GetEnvironmentVariable('GamingTemplateName', 'Machine')
-	$Network = [System.Environment]::GetEnvironmentVariable('Network', 'Machine')
-	$Path = [System.Environment]::GetEnvironmentVariable('VMPath', 'Machine')
+	#all VMs will be on the same network switch
+	$Switch = "Work Network"
 	
-	$VMHostGroup = Get-SCVMHostGroup -VMMServer 
-	$HWProfile = Get-SCHardwareProfile | where { $_.Name -eq $VMType } -VMMServer
-	$HostRatings = Get-SCVMHostRating -VMHostGroup $VMHostGroup -HardwareProfile $HWProfile -DiskSpaceGB 20 -VMName "VM03" -CPUPriority 8 -MemoryPriority 5 -DiskPriority 3 -NetworkPriority 1
-	$HostRatings
+	#path for the virtual machine. All machines will use the same path.
+	$Path = "D:\VMs"
 	
+	# TEMPLATE VHDX
+	$templatePath = "F:\Virtual Machines\Templates\Windows Server 2019 Datacenter Full.vhdx"
 	
-	$VMTemplate = Get-SCVMTemplate -VMMServer $SCVMMHost | where { $_.Name -eq $GamingServerTemplateName }
-	$VMHost = Get-SCVMHost -ComputerName $SCVMMHost
-	New-SCVirtualMachine -VMTemplate $VMTemplate -Name $Name -VMHost $VMHost -Path "C:\VirtualMachinePath" -RunAsynchronously -HardwareProfile $HWProfile -ComputerName "Server01" -FullName "Elisa Daugherty" -OrgName "Contoso" -ProductKey "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX"
+	#path for the new VHDX file. All machines will use the same path.
+	$VHDPath =  New-VHD -Path ($path.FullName + "\" + $vmname + ".vhdx") -ParentPath $templatePath -Differencing
 	
-
-	New-SCVirtualMachine -
 	#define parameter values based on VM Type
 	Switch ($VMType)
 	{

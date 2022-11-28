@@ -17,9 +17,15 @@ function Start-Vm
 	try
 	{
 		
+		New-Logger | # Create new instance of logger configuration
+		Set-MinimumLevel -Value Verbose | # Set minimum level, below which no events should be generated
+		Add-SinkFile -Path 'E:\AppLogs\ServerAutomation-API\Module\log-.log' -RollingInterval Day | # Add sink that will write our event messages into file
+		Add-SinkConsole | # Add sink that will log our event messages into console host
+		Start-Logger # Start logging
 		
-		$VM = Get-SCVirtualMachine -VMMServer "VMMServer01.Contoso.com" | where { $_.Name -eq "PowerOff" }
-		$VM | Start-SCVirtualMachine
+		
+		$VM = Get-SCVirtualMachine -Name $vmName -VMMServer $VMMServer | where { $_.Status -eq "PowerOff" }
+		$json = $VM | Start-SCVirtualMachine | ConvertTo-Json
 	}
 	
 	catch
