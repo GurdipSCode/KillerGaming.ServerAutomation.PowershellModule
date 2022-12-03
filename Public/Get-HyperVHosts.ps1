@@ -12,11 +12,8 @@
 #>
 
 
-function List-HyperVHosts
+function Get-HyperVHosts
 {
-	
-	
-	
 	
 	[cmdletbinding()]
 	param (

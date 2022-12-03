@@ -11,5 +11,16 @@
 		A description of the file.
 #>
 
-
-
+Function New-HypervVm
+{
+	[cmdletbinding(SupportsShouldProcess)]
+	Param (
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new virtual machine")]
+		[ValidateNotNullOrEmpty()]
+		[string]$VMName
+	)
+	
+	$VM = Get-SCVirtualMachine -Name $VMName
+	$newCheckpoint = New-SCVMCheckpoint -RunAsynchronously -JobVariable "NewCheckpiontJob" -VM $VM
+	$JSON = $newCheckpoint | ConvertTo-Json
+}

@@ -11,10 +11,25 @@
 	 Filename:     	Get-VMTemplate.ps1
 	===========================================================================
 	.DESCRIPTION
-		A description of the file.
+		Gets SCVMM Templates.
 #>
 
 
 
-
+Function Get-VMTemplate
+{
+	[cmdletbinding(SupportsShouldProcess)]
+	Param (
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new virtual machine")]
+		[ValidateNotNullOrEmpty()]
+		[string]$VMTemplate,
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the type of game server size")]
+		[string]$VMMServer
+		
+	)
+	
+	
+	
+	Get-SCVMTemplate -Name $VMTemplate -VMMServer $VMMServer | ConvertTo-Json
+}
 

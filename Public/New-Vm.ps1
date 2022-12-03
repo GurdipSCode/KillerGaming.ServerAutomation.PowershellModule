@@ -20,11 +20,10 @@
 	$Network = [System.Environment]::GetEnvironmentVariable('Network', 'Machine')
 	$Path = [System.Environment]::GetEnvironmentVariable('VMPath', 'Machine')
 	
-	$VMHostGroup = Get-SCVMHostGroup -VMMServer 
-	$HWProfile = Get-SCHardwareProfile | where { $_.Name -eq $VMType } -VMMServer
-	$HostRatings = Get-SCVMHostRating -VMHostGroup $VMHostGroup -HardwareProfile $HWProfile -DiskSpaceGB 20 -VMName "VM03" -CPUPriority 8 -MemoryPriority 5 -DiskPriority 3 -NetworkPriority 1
-	$HostRatings
-	
+	$VMTemplate = Get-SCVMTemplate | where { $_.Name -eq $VMTemplate }
+	$VMHost = Get-SCVMHost -ComputerName $SCVMMHost
+	$HostRating = Get-SCVMHostRating -DiskSpaceGB 5 -VMTemplate $VMTemplate -VMHost $VMHost -VMName "VM06"
+
 	
 	$VMTemplate = Get-SCVMTemplate -VMMServer $SCVMMHost | where { $_.Name -eq $GamingServerTemplateName }
 	$VMHost = Get-SCVMHost -ComputerName $SCVMMHost

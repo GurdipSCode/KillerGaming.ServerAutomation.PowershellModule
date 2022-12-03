@@ -21,6 +21,9 @@ Function New-HypervVm
 	)
 	
 	$VM = Get-SCVirtualMachine -Name $VMName
-	$newCheckpoint = New-SCVMCheckpoint -RunAsynchronously -JobVariable "NewCheckpiontJob" -VM $VM
+	
+	$jobVariable = $VM.Name + [guid]::NewGuid()
+	
+	$newCheckpoint = New-SCVMCheckpoint -RunAsynchronously -JobVariable $jobVariable -VM $VM
 	$JSON = $newCheckpoint | ConvertTo-Json
 }

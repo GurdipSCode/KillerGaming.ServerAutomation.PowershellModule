@@ -1,37 +1,30 @@
-﻿
-
-
-<#	
+﻿<#	
 	.NOTES
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2022 v5.8.210
-	 Created on:   	25/11/2022 15:54
+	 Created on:   	02/12/2022 17:56
 	 Created by:   	Administrator
 	 Organization: 	
-	 Filename:     	Delete-VM.ps1
+	 Filename:     	Get-AllHyperVHosts.ps1
 	===========================================================================
 	.DESCRIPTION
 		A description of the file.
 #>
 
 
-function Delete-VM
+
+function Get-AllHyperVHosts
 {
 	
 	[cmdletbinding()]
 	param (
 		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new VMM Server")]
 		[ValidateNotNullOrEmpty()]
-		[string]$vmmServer,
-		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new VMM Server")]
-		[ValidateNotNullOrEmpty()]
-		[string]$vmName
+		[string]$vmmServer
 	)
 	{
 		
-		$VM = Get-SCVirtualMachine -VMMServer $vmmServer -Name $vmName
-		Remove-SCVirtualMachine -VM $VM
+		$hosts = Get-SCVMHost -VMMServer $vmmServer -VMHostGroup $vmHostGroup | ConvertTo-Json
 		
 	}
 }
-		

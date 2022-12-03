@@ -1,16 +1,30 @@
 ﻿<ProjectState>
   <Version>1.0</Version>
-  <FileID>88122181-ac71-4d75-9482-500be200a535</FileID>
-  <OpenFolders />
+  <FileID>2311340b-3876-4f99-a2ea-b99b3b045a92</FileID>
+  <OpenFolders>
+    <Folder>Private</Folder>
+    <Folder>Public</Folder>
+    <Folder>Tests</Folder>
+  </OpenFolders>
   <OpenFiles>
-    <File>Test-Module.ps1</File>
-    <File>Start-Vm.ps1</File>
-    <File>Find-HyperVHost.ps1</File>
+    <File>Public\New-Vm.ps1</File>
+    <File>Public\Set-VMNote.ps1</File>
+    <File>Public\Set-VMTag.ps1</File>
+    <File>Public\Delete-VM.ps1</File>
+    <File>Public\Checkpoint-VM.ps1</File>
+    <File>Public\Get-SCVMMHealth.ps1</File>
+    <File>Public\Get-HypervHealth.ps1</File>
+    <File>Public\Start-Vm.ps1</File>
+    <File>Public\Get-VMTemplate.ps1</File>
+    <File>Readme.MD.cs</File>
     <File>KillerGaming.Powershell.psm1</File>
     <File>KillerGaming.Powershell.psd1</File>
-    <File>New-Vm.ps1</File>
-    <File>Get-SCVMMHealth.ps1</File>
-    <File>Set-VMNote.ps1</File>
-    <File>Get-HypervHealth.p1.ps1</File>
+    <File>Public\Get-VMStats.ps1</File>
+    <File>psake.ps1</File>
+    <File>build.ps1</File>
+    <File>Test-Module.ps1</File>
+    <File>Run-PSScriptAnalyzer.ps1</File>
+    <File>build.yml</File>
+    <File>Public\Get-AllHyperVHosts.ps1</File>
   </OpenFiles>
 </ProjectState>

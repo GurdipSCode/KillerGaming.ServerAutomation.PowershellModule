@@ -1,4 +1,7 @@
-﻿<#	
+﻿
+
+
+<#	
 	.NOTES
 	===========================================================================
 	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2022 v5.8.210
@@ -12,4 +15,21 @@
 #>
 
 
+
+Function Get-VMTemplate
+{
+	[cmdletbinding(SupportsShouldProcess)]
+	Param (
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new virtual machine")]
+		[ValidateNotNullOrEmpty()]
+		[string]$VMTemplate,
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the type of game server size")]
+		[string]$VMMServer
+		
+	)
+	
+	
+	
+	Get-SCVMTemplate -Name $VMTemplate | ConvertTo-Json
+}
 

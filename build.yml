@@ -6,12 +6,7 @@ environment:
     secure: oqMFzG8F65K5l572V7VzlZIWU7xnSYDLtSXECJAAURrXe8M2+BAp9vHLT+1h1lR0
 
 # Allow WMF5 (i.e. PowerShellGallery functionality)
-build_cloud: GLOAPPVA01
-
-force_https_clone: true
-
-clone_folder: c:\projects\myproject
-
+os: WMF 5
 
 # Skip on updates to the readme.
 # We can force this by adding [skip ci] or [ci skip] anywhere in commit message 
@@ -23,3 +18,14 @@ build: false
 #Kick off the CI/CD pipeline
 test_script:
   - ps: . .\build.ps1
+  
+deploy:
+  - provider: Octopus
+    push_packages: true
+    create_release: true
+    deploy_release: false
+    server: https://myoctopus.acme.corp
+    api_key:
+      secure: 8PgmblIvjjj7jr4ZxOdZ9ADT+PeBCF6+PqRcf6PZ4A=
+    project: AcmeWeb
+    deploy_wait: false

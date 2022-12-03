@@ -14,5 +14,4 @@
 
 
 $VM = Get-SCVirtualMachine -Name $vmName
-if ($VM.Status -ne "PowerOff") { Stop-SCVirtualMachine -VM $VM }
 Set-SCVirtualMachine -VM $VM -Tag

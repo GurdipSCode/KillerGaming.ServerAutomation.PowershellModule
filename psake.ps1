@@ -59,6 +59,9 @@ Task Test -Depends Init  {
 Task Build -Depends Test {
 	$lines
 	
+	.\Run-PSScriptAnalyzer.ps1
+	Invoke-PSCodeHealth .\Public .\coveralls -HtmlReportPath .\HealthReport.html
+	
 	# Load the module, read the exported functions, update the psd1 FunctionsToExport
 	Set-ModuleFunctions
 	
