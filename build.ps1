@@ -22,19 +22,19 @@
 					
 			
 					Install-Module -Name $ModuleName -Force -SkipPublisherCheck
-					Import-Module -Name $ModuleName -Force -RequiredVersion 
+					Import-Module -Name $ModuleName -Force
 				}
 				else
 				{
 					Write-Verbose -Message "Module Installed, Importing $($ModuleName)"
-					Import-Module -Name $ModuleName -Force -RequiredVersion $Version
+					Import-Module -Name $ModuleName -Force
 				}
 			}
 			else
 			{
 				Write-Verbose -Message "$($ModuleName) Missing, installing Module"
 				Install-Module -Name $ModuleName -Force -SkipPublisherCheck
-				Import-Module -Name $ModuleName -Force -RequiredVersion $Version
+				Import-Module -Name $ModuleName -Force
 			}
 		}
 	}
