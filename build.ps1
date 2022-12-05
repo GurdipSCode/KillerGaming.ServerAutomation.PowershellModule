@@ -17,27 +17,20 @@
 			if ($Module)
 			{
 			
-					
-					if ((Get-PSRepository -Name PSGallery).InstallationPolicy -ne 'Trusted') { Set-PSRepository -Name PSGallery -InstallationPolicy Trusted }
-					
-			
-					Install-Module -Name $ModuleName -Force -SkipPublisherCheck
-					Import-Module -Name $ModuleName -Force
-				}
-				else
-				{
+	
 					Write-Verbose -Message "Module Installed, Importing $($ModuleName)"
 					Import-Module -Name $ModuleName -Force
 				}
-			}
-			else
-			{
-				Write-Verbose -Message "$($ModuleName) Missing, installing Module"
-				Install-Module -Name $ModuleName -Force -SkipPublisherCheck
-				Import-Module -Name $ModuleName -Force
-			}
+		}
+		
+		else
+		{
+			Write-Verbose -Message "$($ModuleName) Missing, installing Module"
+			Install-Module -Name $ModuleName -Force -SkipPublisherCheck
+			Import-Module -Name $ModuleName -Force
 		}
 	}
+}
 
 
 # Grab nuget bits, install modules, set build variables, start build.
