@@ -40,7 +40,7 @@ try
 	$results = Invoke-ScriptAnalyzer -Path .\Public -IncludeRule $rules.RuleName -Recurse -ErrorAction Stop | Export-Csv $psscriptAnalyzerDir
 	
 	cd C:\Scripts\
-	.\PSScriptAnalyzerReporter.ps1 -OutputhPath $psscriptAnalyzerHtml -CsvPath $psscriptAnalyzerDir
+	.\PSScriptAnalyzerReporter.ps1 -OutputPath $psscriptAnalyzerHtml -CsvPath $psscriptAnalyzerDir
 	$results
 }
 catch
