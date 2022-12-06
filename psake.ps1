@@ -80,7 +80,7 @@ Task Build -Depends Test {
 	}
 	Write-Verbose "Using functions $functionNames"
 	
-	Update-ModuleManifest -Path ".\KillerGaming.Powershell\$($moduleName).psd1" -FunctionsToExport $functionNames
+	Update-ModuleManifest -Path $env:BHPSModuleManifest -FunctionsToExport $functionNames
 	
 	Update-Metadata -Path $env:BHPSModuleManifest
 	
