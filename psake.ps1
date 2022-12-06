@@ -70,15 +70,16 @@ Task Build -Depends Test {
 	# Update the psd1 with Set-ModuleFunction:
 	Set-ModuleFunction
 	
+	Update-Metadata -Path $env:BHPSModuleManifest
+	
 	# Check FunctionsToExport again:
-	# Select-String -Path .\PSSlack\PSSlack.psd1 -Pattern FunctionsToExport
+	Select-String -Path .\KillerGaming.Powershell\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 	
 	
 
 	Invoke-PSCodeHealth .\Public .\coveralls -HtmlReportPath .\HealthReport.html
 	
-	# Load the module, read the exported functions, update the psd1 FunctionsToExport
-	Set-ModuleFunctions
+
 	
 	# Bump the module version
 	Update-Metadata -Path $env:BHPSModuleManifest
