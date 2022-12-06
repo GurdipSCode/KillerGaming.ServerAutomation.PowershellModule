@@ -68,7 +68,19 @@ Task Build -Depends Test {
 	# PSSlack\PSSlack.psd1:61:FunctionsToExport = '*'
 	
 	# Update the psd1 with Set-ModuleFunction:
-	Set-ModuleFunction
+	$moduleName = Get-Item . | ForEach-Object BaseName
+	
+	# RegEx matches files like Verb-Noun.ps1 only, not psakefile.ps1 or *-*.Tests.ps1
+	$functionNames = Get-ChildItem -Recurse | Where-Object { $_.Name -match "^[^\.]+-[^\.]+\.ps1$" } -PipelineVariable file | ForEach-Object {
+		$ast = [System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$null, [ref]$null)
+		if ($ast.EndBlock.Statements.Name)
+		{
+			$ast.EndBlock.Statements.Name
+		}
+	}
+	Write-Verbose "Using functions $functionNames"
+	
+	Update-ModuleManifest -Path ".\KillerGaming.Powershell\$($moduleName).psd1" -FunctionsToExport $functionNames
 	
 	Update-Metadata -Path $env:BHPSModuleManifest
 	
