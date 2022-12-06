@@ -63,7 +63,7 @@ Task Build -Depends Test {
 	.\Run-PSScriptAnalyzer.ps1
 	
 	Set-Location $ProjectRoot
-	Select-String -Path .\KillerGaming.Powershell\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
+	Select-String -Path .\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 	
 	# PSSlack\PSSlack.psd1:61:FunctionsToExport = '*'
 	
