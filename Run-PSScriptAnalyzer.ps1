@@ -35,8 +35,12 @@ try
 	$outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
 	Write-Host $outputDIR
 	$psscriptAnalyzerDir = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer\psscriptanalyzer.csv"
+	$psscriptAnalyzerHtml = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer\psscriptanalyzer.html"
 	$rules = Get-ScriptAnalyzerRule -Severity Warning, Error -ErrorAction Stop
 	$results = Invoke-ScriptAnalyzer -Path .\Public -IncludeRule $rules.RuleName -Recurse -ErrorAction Stop | Export-Csv $psscriptAnalyzerDir
+	
+	cd C:\Scripts\
+	.\PSScriptAnalyzerReporter.ps1 -OutputhPath $psscriptAnalyzerHtml -CsvPath $psscriptAnalyzerDir
 	$results
 }
 catch
