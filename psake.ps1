@@ -71,7 +71,7 @@ Task Build -Depends Test {
 	Set-ModuleFunction
 	
 	# Check FunctionsToExport again:
-	Select-String -Path .\PSSlack\PSSlack.psd1 -Pattern FunctionsToExport
+	# Select-String -Path .\PSSlack\PSSlack.psd1 -Pattern FunctionsToExport
 	
 	
 

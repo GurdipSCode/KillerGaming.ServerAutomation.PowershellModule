@@ -4,7 +4,6 @@
   <OpenFolders>
     <Folder>Private</Folder>
     <Folder>Public</Folder>
-    <Folder>Tests</Folder>
   </OpenFolders>
   <OpenFiles>
     <File>Public\New-Vm.ps1</File>

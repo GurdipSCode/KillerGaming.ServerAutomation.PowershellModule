@@ -37,7 +37,7 @@ try
 	$psscriptAnalyzerDir = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer\psscriptanalyzer.csv"
 	$psscriptAnalyzerHtml = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer"
 	$rules = Get-ScriptAnalyzerRule -Severity Warning, Error -ErrorAction Stop
-	$results = Invoke-ScriptAnalyzer -Path .\KillerGaming.Powershell\Public -IncludeRule $rules.RuleName -Recurse -ErrorAction Stop | Export-Csv $psscriptAnalyzerDir
+	$results = Invoke-ScriptAnalyzer -Path .\Public -IncludeRule $rules.RuleName -Recurse -ErrorAction Stop | Export-Csv $psscriptAnalyzerDir
 	
 	cd C:\Scripts\
 	.\PSScriptAnalyzerReporter.ps1 -OutputPath $psscriptAnalyzerHtml -CsvPath $psscriptAnalyzerDir

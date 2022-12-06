@@ -5,33 +5,19 @@
   <RememberPowerShellVersion>True</RememberPowerShellVersion>
   <PowerShellVersion>Local Machine - PowerShell V5 (64 Bit)</PowerShellVersion>
   <Folders>
-    <Folder>Private</Folder>
-    <Folder>Public</Folder>
     <Folder>Tests</Folder>
+    <Folder>KillerGaming.Powershell</Folder>
   </Folders>
   <Files>
     <File Build="2">KillerGaming.Powershell.psd1</File>
     <File Build="0">KillerGaming.Powershell.psm1</File>
     <File Build="1" Shared="False" ReferenceFunction="Invoke-Test-Module_ps1">Test-Module.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Start-Vm_ps1">Public\Start-Vm.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-New-Vm_ps1">Public\New-Vm.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-SCVMMHealth_ps1">Public\Get-SCVMMHealth.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Set-VMNote_ps1">Public\Set-VMNote.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-VMStats_ps1">Public\Get-VMStats.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Test-RunningAsAdmin_ps1">Private\Test-RunningAsAdmin.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Get-HypervHealth_ps1">Public\Get-HypervHealth.ps1</File>
-    <File Build="2" Shared="True" ReferenceFunction="Invoke-Test-IsCluster_ps1">Private\Test-IsCluster.ps1</File>
     <File Build="2" Shared="True" ReferenceFunction="Invoke-build_ps1">build.ps1</File>
     <File Build="2" Shared="True" ReferenceFunction="Invoke-psake_ps1">psake.ps1</File>
     <File Build="2" Shared="True" ReferenceFunction="Invoke-appveyor_pester_ps1">Tests\appveyor.pester.ps1</File>
     <File Build="2" Shared="True" ReferenceFunction="Invoke-KillerGaming_Powershell_Tests_ps1">Tests\KillerGaming.Powershell.Tests.ps1</File>
-    <File Build="0" Shared="False" ReferenceFunction="Invoke-Set-VMTag_ps1">Public\Set-VMTag.ps1</File>
-    <File Build="0" Shared="False" ReferenceFunction="Invoke-Delete-VM_ps1">Public\Delete-VM.ps1</File>
-    <File Build="0" Shared="False" ReferenceFunction="Invoke-Checkpoint-VM_ps1">Public\Checkpoint-VM.ps1</File>
-    <File Build="0" Shared="False" ReferenceFunction="Invoke-Get-VMTemplate_ps1">Public\Get-VMTemplate.ps1</File>
     <File Build="2">Readme.MD.cs</File>
     <File Build="0" Shared="False" ReferenceFunction="Invoke-Run-PSScriptAnalyzer_ps1">Run-PSScriptAnalyzer.ps1</File>
     <File Build="2">build.yml</File>
-    <File Build="0" Shared="False" ReferenceFunction="Invoke-Get-AllHyperVHosts_ps1">Public\Get-AllHyperVHosts.ps1</File>
   </Files>
 </Project>
