@@ -11,7 +11,21 @@
 		A description of the file.
 #>
 
+Function Set-VMTag
+{
+	[cmdletbinding(SupportsShouldProcess)]
+	Param (
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new virtual machine")]
+		[ValidateNotNullOrEmpty()]
+		[string]$VMTemplate,
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the type of game server size")]
+		[string]$VMMServer,
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the type of game server size")]
+		[string]$VMTag
+		
+	)
 
+	$VM = Get-SCVirtualMachine -Name $vmName
+	Set-SCVirtualMachine -VM $VM -Tag
 
-$VM = Get-SCVirtualMachine -Name $vmName
-Set-SCVirtualMachine -VM $VM -Tag
+}
