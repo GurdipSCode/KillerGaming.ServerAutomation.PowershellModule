@@ -5,14 +5,14 @@ task GenerateListOfFunctions {
 
     Write-Host "Getting functions..."
     Set-Location -Path $env:BHPSProjectPath
-	Select-String -Path .\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
+	Select-String -Path .\KillerGaming.Powershell\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 	
 
 	# Update the psd1 with Set-ModuleFunction:
 	$moduleName = Get-Item . | ForEach-Object BaseName
 	
 	# RegEx matches files like Verb-Noun.ps1 only, not psakefile.ps1 or *-*.Tests.ps1
-	$functionNames = Get-ChildItem -Path ".\Public" -Recurse | Where-Object { $_.Name -match "^[^\.]+-[^\.]+\.ps1$" } -PipelineVariable file | ForEach-Object {
+	$functionNames = Get-ChildItem -Path ".KillerGaming.Powershell\Public" -Recurse | Where-Object { $_.Name -match "^[^\.]+-[^\.]+\.ps1$" } -PipelineVariable file | ForEach-Object {
 		$ast = [System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$null, [ref]$null)
 		if ($ast.EndBlock.Statements.Name)
 		{
@@ -26,7 +26,7 @@ task GenerateListOfFunctions {
 	Update-Metadata -Path $env:BHPSModuleManifest
 	
 	# Check FunctionsToExport again:
-	Select-String -Path .\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
+	Select-String -Path .\KillerGaming.Powershell\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 }
 
 
