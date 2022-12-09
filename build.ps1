@@ -1,7 +1,7 @@
 task GenerateListOfFunctions {
     # Set exported functions by finding functions exported by *.psm1 file via Export-ModuleMember
 
-	Set-BuildEnvironment -Force | Out-null
+	Set-BuildEnvironment -Forcedsds
 
     Write-Host "Getting functions..."
     Set-Location -Path $env:BHPSProjectPath
