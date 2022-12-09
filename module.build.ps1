@@ -30,8 +30,8 @@ $Error.Clear()
 
 "Invoking build action"
 
-Set-Location -Path .\BuildTasks
-task Default GenerateListOfFunctions
+.\.build.ps1
+
 if ($Result.Error)
 {
     $Error[-1].ScriptStackTrace | Out-String
