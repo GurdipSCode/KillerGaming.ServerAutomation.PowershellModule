@@ -13,7 +13,7 @@ Get-PackageProvider -Name 'NuGet' -ForceBootstrap | Out-Null
 Set-BuildEnvironment -Force
 Get-ChildItem Env:BH*
 
-$Script:Path = $Env:BHProjectPath
+$global:Path = $Env:BHProjectPath
 
 
 
