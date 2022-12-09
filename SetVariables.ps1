@@ -9,11 +9,11 @@ $varsDir = Join-Path -Path $outputDIR -ChildPath "vars"
 
 Get-PackageProvider -Name 'NuGet' -ForceBootstrap | Out-Null
 
-set-Location $varsDir
-
 cd .\KillerGaming.powershell
 Set-BuildEnvironment -Force
-Get-ChildItem Env:BH*
+$vars = Get-ChildItem Env:BH*
+$vars
+set-Location $varsDir
 Get-ChildItem Env:BH* | ForEach-Object { $_.Name + "," +  $_.Value | Out-File buildvars.csv -Append }
 
 
