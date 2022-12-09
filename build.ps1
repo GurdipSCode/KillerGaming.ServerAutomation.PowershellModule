@@ -1,33 +1,32 @@
-task test {
+GenerateListOfFunctions {
     # Set exported functions by finding functions exported by *.psm1 file via Export-ModuleMember
 
-write-host "t"
-  
-#    # Set-Location $env:BHPSProjectPath
-# 	Select-String -Path .\KillerGaming.Powershell\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
+
+    Write-Host "Getting functions..."
+    Set-Location $env:BHPSProjectPath
+	Select-String -Path .\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 	
 
-# 	# Update the psd1 with Set-ModuleFunction:
-# 	$moduleName = Get-Item . | ForEach-Object BaseName
+	# Update the psd1 with Set-ModuleFunction:
+	$moduleName = Get-Item . | ForEach-Object BaseName
 	
-# 	# RegEx matches files like Verb-Noun.ps1 only, not psakefile.ps1 or *-*.Tests.ps1
-# 	$functionNames = Get-ChildItem -Path ".\KillerGaming.Powershell\Public" -Recurse | Where-Object { $_.Name -match "^[^\.]+-[^\.]+\.ps1$" } -PipelineVariable file | ForEach-Object {
-# 		$ast = [System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$null, [ref]$null)
-# 		if ($ast.EndBlock.Statements.Name)
-# 		{
-# 			$ast.EndBlock.Statements.Name
-# 		}
-# 	}
-# 	Write-Verbose "Using functions $functionNames"
+	# RegEx matches files like Verb-Noun.ps1 only, not psakefile.ps1 or *-*.Tests.ps1
+	$functionNames = Get-ChildItem -Path ".\Public" -Recurse | Where-Object { $_.Name -match "^[^\.]+-[^\.]+\.ps1$" } -PipelineVariable file | ForEach-Object {
+		$ast = [System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$null, [ref]$null)
+		if ($ast.EndBlock.Statements.Name)
+		{
+			$ast.EndBlock.Statements.Name
+		}
+	}
+	Write-Verbose "Using functions $functionNames"
 	
-# 	Update-ModuleManifest -Path $env:BHPSModuleManifest -FunctionsToExport $functionNames
+	Update-ModuleManifest -Path $env:BHPSModuleManifest -FunctionsToExport $functionNames
 	
-# 	Update-Metadata -Path $env:BHPSModuleManifest
+	Update-Metadata -Path $env:BHPSModuleManifest
 	
-# 	# Check FunctionsToExport again:
-# 	Select-String -Path .\KillerGaming.Powershell\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
-	
-	
+	# Check FunctionsToExport again:
+	Select-String -Path .\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 }
 
-task . test
+
+task . GenerateListOfFunctions
