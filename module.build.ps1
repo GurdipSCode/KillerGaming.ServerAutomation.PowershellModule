@@ -20,6 +20,7 @@ $Script:ModuleInstallScope = 'CurrentUser'
 
 Get-PackageProvider -Name 'NuGet' -ForceBootstrap | Out-Null
 
+
 # Install-Module -Name $Script:Modules -Scope $Script:ModuleInstallScope -Force -SkipPublisherCheck
 
 Set-BuildEnvironment -Force
@@ -28,7 +29,8 @@ Get-ChildItem Env:BH*
 
 "Invoking build action"
 
-.\build.ps1
+Invoke-Build test
+
 
 
 

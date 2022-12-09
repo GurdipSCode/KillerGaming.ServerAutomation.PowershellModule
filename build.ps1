@@ -1,4 +1,4 @@
-task GenerateListOfFunctions {
+task test {
     # Set exported functions by finding functions exported by *.psm1 file via Export-ModuleMember
 
 
@@ -30,4 +30,4 @@ task GenerateListOfFunctions {
 	
 }
 
-task . GenerateListOfFunctions
+task . test
