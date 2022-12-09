@@ -3,7 +3,7 @@ task test {
 
 
   
-    Set-Location $env:BHPSProjectPath
+   # Set-Location $env:BHPSProjectPath
 	Select-String -Path .\KillerGaming.Powershell\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 	
 
