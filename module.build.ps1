@@ -26,11 +26,9 @@ Set-BuildEnvironment -Force
 Get-ChildItem Env:BH*
 
 
-$Error.Clear()
-
 "Invoking build action"
 
-.\.build.ps1
+.\module.build.ps1
 
 
 
