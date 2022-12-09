@@ -36,7 +36,7 @@ task GenerateListOfFunctions {
 	Update-Metadata -Path $moduleManifest
 	
 	# Check FunctionsToExport again:
-	Select-String -Path .\KillerGaming.Powershell\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
+	Select-String -Path $moduleManifest -Pattern FunctionsToExport
 }
 
 task . GenerateListOfFunctions
