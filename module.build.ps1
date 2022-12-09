@@ -28,7 +28,7 @@ Get-ChildItem Env:BH*
 
 "Invoking build action"
 
-.\module.build.ps1
+.\build.ps1
 
 
 
