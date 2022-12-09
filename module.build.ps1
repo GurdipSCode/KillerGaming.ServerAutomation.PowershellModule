@@ -28,10 +28,10 @@ Get-ChildItem Env:BH*
 
 $Error.Clear()
 
-"Invoking build action [$Task]"
+"Invoking build action"
 
 Set-Location -Path ./BuildTasks
-Invoke-Build GenerateListOfFunctionsToExport
+Invoke-Build GenerateListOfFunctions
 if ($Result.Error)
 {
     $Error[-1].ScriptStackTrace | Out-String
