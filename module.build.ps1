@@ -32,17 +32,9 @@ $Error.Clear()
 
 .\.build.ps1
 
-if ($Result.Error)
-{
-    $Error[-1].ScriptStackTrace | Out-String
-    exit 1
-}
-
-exit 0
 
 
 
-
-Write-Host 'Import common tasks'
-Get-ChildItem -Path $buildroot\BuildTasks\*.Task.ps1 | ForEach-Object {
-    Write-Host $_.FullName;. $_.FullName}
+# Write-Host 'Import common tasks'
+# Get-ChildItem -Path $buildroot\BuildTasks\*.Task.ps1 | ForEach-Object {
+#     Write-Host $_.FullName;. $_.FullName}

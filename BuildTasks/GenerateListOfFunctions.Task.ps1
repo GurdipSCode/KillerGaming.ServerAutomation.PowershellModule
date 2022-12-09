@@ -1,11 +1,8 @@
 task GenerateListOfFunctions {
     # Set exported functions by finding functions exported by *.psm1 file via Export-ModuleMember
-    $params = @{
-        Force    = $true
-        Passthru = $true
-        Name     = (Resolve-Path (Get-ChildItem -Path $moduleSourcePath -Filter '*.psm1')).Path
-    }
-  
+
+
+    Write-Host "Getting functions..."
     Set-Location $env:BHPSProjectPath
 	Select-String -Path .\KillerGaming.Powershell\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 	
