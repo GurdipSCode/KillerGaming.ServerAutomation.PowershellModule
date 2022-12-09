@@ -11,11 +11,11 @@ Get-PackageProvider -Name 'NuGet' -ForceBootstrap | Out-Null
 
 set-Location $varsDir
 
+cd .\KillerGaming.powershell
 Set-BuildEnvironment -Force
 Get-ChildItem Env:BH*
 Get-ChildItem Env:BH* | ForEach-Object { $_.Name + "," +  $_.Value | Out-File buildvars.csv -Append }
 
-$global:Path = $Env:BHProjectPath
 
 
 
