@@ -30,7 +30,7 @@ $Error.Clear()
 
 "Invoking build action"
 
-Set-Location -Path ./BuildTasks
+Set-Location -Path .\BuildTasks
 Invoke-Build GenerateListOfFunctions
 if ($Result.Error)
 {
