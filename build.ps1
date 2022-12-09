@@ -5,9 +5,9 @@ task GenerateListOfFunctions {
 
     Write-Host "Getting functions..."
 
-	Write-Host $global:Path
+	Write-Host (Get-Item .).FullName
 
-    Set-Location -Path $Script:Path
+    Set-Location -Path (Get-Item .).FullName
 	Select-String -Path KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 	
 
