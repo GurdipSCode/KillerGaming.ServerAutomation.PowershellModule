@@ -1,0 +1,11 @@
+BHModulePathC:\Repos\KillerGaming.Powershell\KillerGaming.Powershell\KillerGaming.Powershell
+BHProjectNameKillerGaming.Powershell
+BHBuildOutputC:\Repos\KillerGaming.Powershell\KillerGaming.Powershell\BuildOutput
+BHBuildNumber0
+BHCommitHash318d35f21325f8673c5d976417c67c6785258c6d
+BHBranchNamemain
+BHCommitMessagessd
+BHPSModulePathC:\Repos\KillerGaming.Powershell\KillerGaming.Powershell\KillerGaming.Powershell
+BHProjectPathC:\Repos\KillerGaming.Powershell\KillerGaming.Powershell
+BHPSModuleManifestC:\Repos\KillerGaming.Powershell\KillerGaming.Powershell\KillerGaming.Powershell\KillerGaming.Powershell.psd1
+BHBuildSystemUnknown

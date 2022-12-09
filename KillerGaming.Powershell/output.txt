@@ -1,0 +1,66 @@
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHModulePath                   C:\Repos\KillerGaming.Powershell\KillerGaming.Powershell\KillerGaming.Powershell
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHProjectName                  KillerGaming.Powershell
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHBuildOutput                  C:\Repos\KillerGaming.Powershell\KillerGaming.Powershell\BuildOutput
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHBuildNumber                  0
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHCommitHash                   318d35f21325f8673c5d976417c67c6785258c6d
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHBranchName                   main
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHCommitMessage                ssd
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHPSModulePath                 C:\Repos\KillerGaming.Powershell\KillerGaming.Powershell\KillerGaming.Powershell
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHProjectPath                  C:\Repos\KillerGaming.Powershell\KillerGaming.Powershell
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHPSModuleManifest             C:\Repos\KillerGaming.Powershell\KillerGaming.Powershell\KillerGaming.Powershell\KillerGami…
+
+
+[32;1mName                           Value[0m
+[32;1m----                           -----[0m
+BHBuildSystem                  Unknown
+
+BHModulePath
+BHProjectName
+BHBuildOutput
+BHBuildNumber
+BHCommitHash
+BHBranchName
+BHCommitMessage
+BHPSModulePath
+BHProjectPath
+BHPSModuleManifest
+BHBuildSystem
