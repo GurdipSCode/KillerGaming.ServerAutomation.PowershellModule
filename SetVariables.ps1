@@ -13,6 +13,9 @@ Get-PackageProvider -Name 'NuGet' -ForceBootstrap | Out-Null
 Set-BuildEnvironment -Force
 Get-ChildItem Env:BH*
 
+$Script:Path = $Env:BHProjectPath
+
+
 
 # Write-Host 'Import common tasks'
 # Get-ChildItem -Path $buildroot\BuildTasks\*.Task.ps1 | ForEach-Object {
