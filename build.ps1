@@ -3,7 +3,7 @@ task GenerateListOfFunctions {
 
 
     Write-Host "Getting functions..."
-    Set-Location $env:BHPSProjectPath
+    Set-Location -Path $env:BHPSProjectPath
 	Select-String -Path .\KillerGaming.Powershell.psd1 -Pattern FunctionsToExport
 	
 
