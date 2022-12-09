@@ -18,13 +18,15 @@ function Get-AllHyperVHosts
 	
 	[cmdletbinding()]
 	param (
-		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new VMM Server")]
+
+		[Parameter(Position = 0, Mandatory, HelpMessage = "Enter the name of the new VMM Host Group")]
 		[ValidateNotNullOrEmpty()]
-		[string]$vmmServer
+		[string]$vmmHostGroup
+		
 	)
 	{
 		
-		$hosts = Get-SCVMHost -VMMServer $vmmServer -VMHostGroup $vmHostGroup | ConvertTo-Json
+		$hosts = Get-SCVMHost -VMHostGroup $vmHostGroup | ConvertTo-Json
 		
 	}
 }
