@@ -99,7 +99,7 @@ task RunPSCodeHealth {
         $psCodeHealth = Join-Path -Path $outputDIR -ChildPath "PSCodeHealth\HealthReport.html"
         
 		Write-Host $outputDIR
-        Invoke-PSCodeHealth -Path .\KillerGaming.Powershell\Public -HtmlReportPath $psCodeHealth
+        Invoke-PSCodeHealth -Path .\KillerGaming.Powershell\Public -HtmlReportPath $psCodeHealth -TestsPath .\Tests
     
 
 }
