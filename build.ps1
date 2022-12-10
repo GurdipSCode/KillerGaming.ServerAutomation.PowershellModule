@@ -93,7 +93,7 @@ task RunPSScriptAnalyzer {
 }
 
 task RunPSCodeHealth {
-{
+
 
         $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
         $psCodeHealth = Join-Path -Path $outputDIR -ChildPath "PSCodeHealth\HealthReport.html"
@@ -101,7 +101,7 @@ task RunPSCodeHealth {
 		Write-Host $outputDIR
         Invoke-PSCodeHealth -Path .\KillerGaming.Powershell\Public -HtmlReportPath $psCodeHealth
     
-}
+
 }
 
 task . CheckSyntax, GenerateListOfFunctions, RunPSScriptAnalyzer, RunPSCodeHealth
