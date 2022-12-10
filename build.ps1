@@ -100,7 +100,7 @@ task RunPSCodeHealth {
         
 		$pa = "HtmlReport.html"
 		Write-Host $outputDIR
-        Invoke-PSCodeHealth -Path .\KillerGaming.Powershell\Public -HtmlReportPath $pa -TestsPath .\Tests
+        Invoke-PSCodeHealth -Path .\KillerGaming.Powershell\Public -HtmlReportPath $psCodeHealth -TestsPath .\Tests
     
 
 		$configuration              = [PesterConfiguration]::Default
