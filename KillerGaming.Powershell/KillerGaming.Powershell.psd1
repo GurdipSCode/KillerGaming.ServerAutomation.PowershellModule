@@ -71,7 +71,7 @@ NestedModules = @()
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = 'New-HypervVm', 'Delete-VM', 'Get-AllHyperVHosts', 'Get-HypervHealth', 
                'Get-HyperVHosts', 'Start-Vm', 'List-hyperVHosts', 'Get-VMTemplate', 
-               'New-HypervVm', 'Set-VMNote', 'Set-VMTag', 'Start-Vm'
+               'New-HypervVm', 'Set-VMNote', 'Set-VMTag', 'Start-Vm', 'Sample'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'

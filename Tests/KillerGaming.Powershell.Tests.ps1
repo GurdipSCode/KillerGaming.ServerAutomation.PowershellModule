@@ -13,17 +13,21 @@
 
 
 
+
+Import-Module $PSScriptRoot\..\KillerGaming.Powershell -Force
+
+
 #Integration test example
 Describe "Get-SEObject PS$PSVersion Integrations tests" {
 	
 	Context 'Strict mode' {
 		
 		Set-StrictMode -Version latest
-		$s = 400
+		$s = sample
 		
 		It 'should get valid data' {
 		
-			$s -gt 100 | Should be $True
+			$s -gt 1 | Should be $True
 	
 		}
 	}
