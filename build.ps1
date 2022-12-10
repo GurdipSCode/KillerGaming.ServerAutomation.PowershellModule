@@ -108,7 +108,7 @@ task RunPSCodeHealth {
 		Remove-Module Pester -Force
 		Import-Module Pester -MaximumVersion 4.*
 
-		$s = Invoke-PSCodeHealth -Path '.\KillerGaming.Powershell\Public' -TestsResult $testResult
+		$s = Invoke-PSCodeHealth -Path '.\KillerGaming.Powershell\Public' -TestsResult $testResult -HtmlReportPath $outputDIR
 
 		$s
 
