@@ -1,7 +1,7 @@
 
  task CheckSyntax {
  
-  $scripts = Get-ChildItem -Path .\KillerGaming -Include *.ps1, *.psm1, *.psd1 -Recurse |
+  $scripts = Get-ChildItem -Path .\KillerGaming.Powershell -Include *.ps1, *.psm1, *.psd1 -Recurse |
   Where-Object {$_.FullName -notmatch 'powershell'}
 
 # TestCases are splatted to the script so we need hashtables
