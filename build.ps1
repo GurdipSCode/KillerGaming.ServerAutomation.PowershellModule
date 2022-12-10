@@ -98,11 +98,8 @@ task RunPSCodeHealth {
         $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
         $psCodeHealth = Join-Path -Path $outputDIR -ChildPath "PSCodeHealth\HealthReport.html"
         
-		$pa = "HtmlReport.html"
 		Write-Host $outputDIR
-        Invoke-PSCodeHealth -Path .\KillerGaming.Powershell\Public -HtmlReportPath $psCodeHealth -TestsPath .\Tests
-    
-
+   
 		$configuration              = [PesterConfiguration]::Default
 		$configuration.Run.Path     = '.\Tests'
 		$configuration.Run.PassThru = $true
