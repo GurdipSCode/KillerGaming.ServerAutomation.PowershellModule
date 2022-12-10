@@ -1,4 +1,15 @@
 
+task CopyModule {
+
+	$outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
+	$outputModule = Join-Path -Path $outputDIR -ChildPath "Module"
+			
+
+	$moduleDir = "./KillerGaming.Powershell/*"
+
+	Copy-Item -Path $moduleDir -Destination $outputModule -Recurse 
+}
+ 
  task CheckSyntax {
  
   $scripts = Get-ChildItem -Path .\KillerGaming.Powershell -Include *.ps1, *.psm1, *.psd1 -Recurse |
@@ -116,4 +127,4 @@ Remove-Module Pester -Force
 
 }
 
-task . CheckSyntax, GenerateListOfFunctions, RunPSScriptAnalyzer, RunPSCodeHealth
+task . CheckSyntax, GenerateListOfFunctions, RunPSScriptAnalyzer, RunPSCodeHealth, CopyModule
