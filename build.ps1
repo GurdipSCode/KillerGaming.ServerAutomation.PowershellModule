@@ -110,7 +110,7 @@ task RunPSCodeHealth {
 
 		$s = Invoke-PSCodeHealth -Path '.\KillerGaming.Powershell\Public' -TestsResult $testResult -HtmlReportPath $psCodeHealth
 
-		$s
+		Write-Host $s
 
 Remove-Module Pester -Force
 
