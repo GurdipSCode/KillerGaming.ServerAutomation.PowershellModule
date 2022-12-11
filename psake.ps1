@@ -123,12 +123,16 @@ Task RunPSScriptAnalyzer -Depends GenerateListOfFunctions {
 
             $lines 
 
+            $modulePath = Get-Item Env:BHPSModulePath | select -ExpandProperty Value
+          
+            $pubPath = Join-Path $modulePath -ChildPath "KillerGaming.Powershell/Public"
+
 			$outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
 			Write-Host $outputDIR
 			$psscriptAnalyzerDir = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer\psscriptanalyzer.csv"
 			$psscriptAnalyzerHtml = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer"
 			
-			$results = Invoke-ScriptAnalyzer -Path .\KillerGaming.Powershell\Public -Recurse -ErrorAction Stop | Export-Csv $psscriptAnalyzerDir
+			$results = Invoke-ScriptAnalyzer -Path $pubPath -Recurse -ErrorAction Stop | Export-Csv $psscriptAnalyzerDir
 			
 			cd C:\Scripts\
 			.\PSScriptAnalyzerReporter.ps1 -OutputPath $psscriptAnalyzerHtml -CsvPath $psscriptAnalyzerDir
