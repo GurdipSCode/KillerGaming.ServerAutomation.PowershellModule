@@ -146,6 +146,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
         $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
         $psCodeHealth = Join-Path -Path $outputDIR -ChildPath "PSCodeHealth\HealthReport.html"
         
+        Write-Host (Get-Item .).FullName
 		Write-Host $outputDIR
    
 		$configuration              = [PesterConfiguration]::Default
