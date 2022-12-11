@@ -1,15 +1,15 @@
-        Import-Module Pester -MaximumVersion 5.*
+        # Import-Module Pester -MaximumVersion 5.*
 
-        Write-Host $env:system.teamcity.build.checkoutDir 
+        # Write-Host $env:system.teamcity.build.checkoutDir 
 
-		$configuration              = [PesterConfiguration]::Default
-		$configuration.Run.Path     = $env:system.teamcity.build.checkoutDir + "\Tests\KillerGaming.Powershell.Tests.ps1"
-		$configuration.Run.PassThru = $true
-		$testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
+		# $configuration              = [PesterConfiguration]::Default
+		# $configuration.Run.Path     = $env:system.teamcity.build.checkoutDir + "\Tests\KillerGaming.Powershell.Tests.ps1"
+		# $configuration.Run.PassThru = $true
+		# $testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
 
-		Remove-Module Pester -Force
-		Import-Module Pester -MaximumVersion 4.*
+		# Remove-Module Pester -Force
+		# Import-Module Pester -MaximumVersion 4.*
 
-        $s = Invoke-PSCodeHealth -Path $env:system.teamcity.build.checkoutDir + "\KillerGaming.Powershell\Public" -TestsPath $env:system.teamcity.build.checkoutDir + "\Tests" -HtmlReportPath '.\s.html' -PassThru
-        Test-PSCodeHealthCompliance -HealthReport $s
-        Remove-Module Pester -Force
+        # $s = Invoke-PSCodeHealth -Path $env:system.teamcity.build.checkoutDir + "\KillerGaming.Powershell\Public" -TestsPath $env:system.teamcity.build.checkoutDir + "\Tests" -HtmlReportPath '.\s.html' -PassThru
+        # Test-PSCodeHealthCompliance -HealthReport $s
+        # Remove-Module Pester -Force
