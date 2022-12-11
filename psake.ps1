@@ -155,8 +155,8 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
         $pubPath = Join-Path $modulePath -ChildPath "Public"
         Write-Host $pubPath
 
-	
-   
+        Import-Module Pester -MaximumVersion 5.*
+
 		$configuration              = [PesterConfiguration]::Default
 		$configuration.Run.Path     = $testPath
 		$configuration.Run.PassThru = $true
@@ -165,11 +165,10 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 		Remove-Module Pester -Force
 		Import-Module Pester -MaximumVersion 4.*
 
-		$s = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult -HtmlReportPath $psCodeHealth
-
-		$s
-
-Remove-Module Pester -Force
+        $s = Invoke-PSCodeHealth -Path $pubPath -TestsPath $testPath -HtmlReportPath $outputDIR -PassThru
+      
+        Test-PSCodeHealthCompliance -HealthReport $s
+        Remove-Module Pester -Force
 
 }
 
