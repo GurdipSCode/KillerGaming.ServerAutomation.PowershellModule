@@ -155,6 +155,8 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
         $pubPath = Join-Path $modulePath -ChildPath "Public"
         Write-Host $pubPath
 
+        Set-Location $projectPath
+
        # Import-Module Pester -MaximumVersion 4.*
    $path = Join-Path $ProjectRoot -ChildPath "Tests/KillerGaming.Powershell.Tests.ps1"
        $container = New-PesterContainer -Path $path
@@ -173,7 +175,9 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
  
     Write-Host $path
 
-        $s = Invoke-PSCodeHealth -Path $pubPath -TestsPath $container -HtmlReportPath $psCodeHealth -PassThru
+    $Params = @{Path='.\KillerGaming\Public\'; TestsPath='.\Tests'; Recurse=$True}
+
+        $s = Invoke-PSCodeHealth $Params
       
         Test-PSCodeHealthCompliance -HealthReport $s
       #  Remove-Module Pester -Force
