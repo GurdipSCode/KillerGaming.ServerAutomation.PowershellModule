@@ -140,29 +140,29 @@ Task RunPSScriptAnalyzer -Depends GenerateListOfFunctions {
 
 }
 
-# Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
+Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
-#         $lines 
-#         $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
-#         $psCodeHealth = Join-Path -Path $outputDIR -ChildPath "PSCodeHealth\HealthReport.html"
+        $lines 
+        $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
+        $psCodeHealth = Join-Path -Path $outputDIR -ChildPath "PSCodeHealth\HealthReport.html"
         
-# 		Write-Host $outputDIR
+		Write-Host $outputDIR
    
-# 		$configuration              = [PesterConfiguration]::Default
-# 		$configuration.Run.Path     = '.\Tests'
-# 		$configuration.Run.PassThru = $true
-# 		$testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
+		$configuration              = [PesterConfiguration]::Default
+		$configuration.Run.Path     = '.\Tests'
+		$configuration.Run.PassThru = $true
+		$testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
 
-# 		Remove-Module Pester -Force
-# 		Import-Module Pester -MaximumVersion 4.*
+		Remove-Module Pester -Force
+		Import-Module Pester -MaximumVersion 4.*
 
-# 		$s = Invoke-PSCodeHealth -Path '.\KillerGaming.Powershell\Public' -TestsResult $testResult -HtmlReportPath $psCodeHealth
+		$s = Invoke-PSCodeHealth -Path '.\KillerGaming.Powershell\Public' -TestsResult $testResult -HtmlReportPath $psCodeHealth
 
-# 		Write-Host $s
+		$s
 
-# Remove-Module Pester -Force
+Remove-Module Pester -Force
 
-# }
+}
 
 # Task SetVersion -Depends RunPSCodeHealth {
 
