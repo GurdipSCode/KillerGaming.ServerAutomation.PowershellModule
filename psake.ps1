@@ -157,9 +157,14 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
         Import-Module Pester -MaximumVersion 5.*
 
+        $container = New-PesterContainer -Path $testPath 
+
 		$configuration              = [PesterConfiguration]::Default
-		$configuration.Run.Path     = $testPath
+	#	$configuration.Run.Path     = $testPath
 		$configuration.Run.PassThru = $true
+
+        $config.Run.Container = $container
+
 		$testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
 
 		Remove-Module Pester -Force
