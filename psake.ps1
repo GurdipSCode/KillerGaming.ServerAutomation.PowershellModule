@@ -159,7 +159,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
         $container = New-PesterContainer -Path $ProjectRoot/Tests/KillerGaming.Powershell.Tests.ps1
 
-		$configuration              = [PesterConfiguration]::Default
+		$configuration = New-PesterConfiguration
 	 #	$configuration.Run.Path     = $ProjectRoot/Tests
 		$configuration.Run.PassThru = $true
 
