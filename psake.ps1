@@ -112,7 +112,7 @@ Task GenerateListOfFunctions -Depends CheckSyntax {
 	
 	# Check FunctionsToExport again:
 	Select-String -Path $moduleManifest -Pattern FunctionsToExport
-# }
+ }
 
 
 # Task RunPSScriptAnalyzer -Depends GenerateListOfFunctions {
