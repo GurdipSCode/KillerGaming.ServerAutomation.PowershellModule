@@ -24,6 +24,7 @@ Task Default -Depends Test
 
 Task Init {
     $lines
+    Set-BuildEnvironment
     Set-Location $ProjectRoot
     "Build System Details:"
     Get-Item ENV:BH*
