@@ -146,18 +146,24 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
         $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
         $psCodeHealth = Join-Path -Path $outputDIR -ChildPath "PSCodeHealth\HealthReport.html"
         
+        $projectPath = Get-Item Env:BHProjectPath | select -ExpandProperty Value
+        $testPath = Join-Path $projectPath -ChildPath "Tests"
+        
+        $modulePath = Get-Item Env:BHPSModulePath | select -ExpandProperty Value
+        $pubPath = Join-Path $modulePath -ChildPath "Public"
+
         Write-Host (Get-Item .).FullName
 		Write-Host $outputDIR
    
 		$configuration              = [PesterConfiguration]::Default
-		$configuration.Run.Path     = '.\Tests'
+		$configuration.Run.Path     = $testPath
 		$configuration.Run.PassThru = $true
 		$testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
 
 		Remove-Module Pester -Force
 		Import-Module Pester -MaximumVersion 4.*
 
-		$s = Invoke-PSCodeHealth -Path '.\KillerGaming.Powershell\Public' -TestsResult $testResult -HtmlReportPath $psCodeHealth
+		$s = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult -HtmlReportPath $psCodeHealth
 
 		$s
 
