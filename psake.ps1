@@ -20,7 +20,7 @@ Properties {
     }
 }
 
-Task Default -Depends Init
+Task Default -Depends Init, Test, CheckSyntax
 
 Task Init {
     $lines
