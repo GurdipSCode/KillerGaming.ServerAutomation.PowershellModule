@@ -148,7 +148,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
         Write-Host $psCodeHealth
         
         $projectPath = Get-Item Env:BHProjectPath | select -ExpandProperty Value
-        $testPath = Join-Path $projectPath -ChildPath "Tests"
+        $testPath = Join-Path $projectPath -ChildPath "Tests\KillerGaming.Powershell.Tests.ps1"
         Write-Host $testPath
         
         $modulePath = Get-Item Env:BHPSModulePath | select -ExpandProperty Value
