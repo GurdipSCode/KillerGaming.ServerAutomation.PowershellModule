@@ -71,6 +71,11 @@ task GenerateListOfFunctions {
 	Select-String -Path $moduleManifest -Pattern FunctionsToExport
 }
 
+task PublishModule { 
+
+	
+}
+
 task RunPSScriptAnalyzer {
 
 		try
