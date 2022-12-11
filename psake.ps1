@@ -160,7 +160,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
        $container = New-PesterContainer -Path $path
 
 	   $configuration = New-PesterConfiguration
-	   $configuration.Run.Path     = $ProjectRoot/Tests
+	   $configuration.Run.Path     = $path
 	   $configuration.Run.PassThru = $true
 
       $configuration.Run.Container = $container
