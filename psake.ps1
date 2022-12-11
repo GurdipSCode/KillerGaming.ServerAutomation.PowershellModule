@@ -163,7 +163,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 	#	$configuration.Run.Path     = $testPath
 		$configuration.Run.PassThru = $true
 
-        $config.Run.Container = $container
+        $configuration.Run.Container = $container
 
 		$testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
 
