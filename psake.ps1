@@ -30,52 +30,52 @@ Task Init {
     "`n"
 }
 
-# Task Test -Depends Init  {
-#     $lines
-#     "`n`tSTATUS: Testing with PowerShell $PSVersion"
+Task Test -Depends Init  {
+    $lines
+    "`n`tSTATUS: Testing with PowerShell $PSVersion"
 
-#     # Gather test results. Store them in a variable and file
-#     # $TestResults = Invoke-Pester -Path $ProjectRoot\Tests -PassThru -OutputFormat NUnitXml -OutputFile "$ProjectRoot\$TestFile"
+    # Gather test results. Store them in a variable and file
+    # $TestResults = Invoke-Pester -Path $ProjectRoot\Tests -PassThru -OutputFormat NUnitXml -OutputFile "$ProjectRoot\$TestFile"
 
-#     # # In Appveyor?  Upload our tests! #Abstract this into a function?
-#     # If($ENV:BHBuildSystem -eq 'AppVeyor')
-#     # {
-#     #     (New-Object 'System.Net.WebClient').UploadFile(
-#     #         "https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)",
-#     #         "$ProjectRoot\$TestFile" )
-#     # }
+    # # In Appveyor?  Upload our tests! #Abstract this into a function?
+    # If($ENV:BHBuildSystem -eq 'AppVeyor')
+    # {
+    #     (New-Object 'System.Net.WebClient').UploadFile(
+    #         "https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)",
+    #         "$ProjectRoot\$TestFile" )
+    # }
 
-#     # Remove-Item "$ProjectRoot\$TestFile" -Force -ErrorAction SilentlyContinue
+    # Remove-Item "$ProjectRoot\$TestFile" -Force -ErrorAction SilentlyContinue
 
-#     # # Failed tests?
-#     # # Need to tell psake or it will proceed to the deployment. Danger!
-#     # if($TestResults.FailedCount -gt 0)
-#     # {
-#     #     Write-Error "Failed '$($TestResults.FailedCount)' tests, build failed"
-#     # }
-#     "`n"
-# }
+    # # Failed tests?
+    # # Need to tell psake or it will proceed to the deployment. Danger!
+    # if($TestResults.FailedCount -gt 0)
+    # {
+    #     Write-Error "Failed '$($TestResults.FailedCount)' tests, build failed"
+    # }
+    "`n"
+}
 
 
-# Task CheckSyntax -Depends Test {
+Task CheckSyntax -Depends Test {
  
-#   $scripts = Get-ChildItem -Path .\KillerGaming.Powershell -Include *.ps1, *.psm1, *.psd1 -Recurse |
-#   Where-Object {$_.FullName -notmatch 'powershell'}
+  $scripts = Get-ChildItem -Path .\KillerGaming.Powershell -Include *.ps1, *.psm1, *.psd1 -Recurse |
+  Where-Object {$_.FullName -notmatch 'powershell'}
 
-# # TestCases are splatted to the script so we need hashtables
-# $testCases = $scripts | Foreach-Object {@{file = $_}}
+# TestCases are splatted to the script so we need hashtables
+$testCases = $scripts | Foreach-Object {@{file = $_}}
 
-# It "Script <file> should be valid powershell" -TestCases $testCases {
-# param($file)
+It "Script <file> should be valid powershell" -TestCases $testCases {
+param($file)
 
-# $file.FullName | Should Exist
+$file.FullName | Should Exist
 
-#     $contents = Get-Content -Path $file.FullName -ErrorAction Stop
-#     $errors = $null
-#     $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-#     $errors.Count | Should Be 0
-#     }
-#  }
+    $contents = Get-Content -Path $file.FullName -ErrorAction Stop
+    $errors = $null
+    $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
+    $errors.Count | Should Be 0
+    }
+ }
 
 
 # Task GenerateListOfFunctions -Depends CheckSyntax {
