@@ -125,7 +125,7 @@ Task RunPSScriptAnalyzer -Depends GenerateListOfFunctions {
 
             $modulePath = Get-Item Env:BHPSModulePath | select -ExpandProperty Value
           
-            $pubPath = Join-Path $modulePath -ChildPath "KillerGaming.Powershell/Public"
+            $pubPath = Join-Path $modulePath -ChildPath "Public"
 
 			$outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
 			Write-Host $outputDIR
