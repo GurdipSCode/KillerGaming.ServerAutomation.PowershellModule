@@ -173,7 +173,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
     $path = Join-Path $ProjectRoot -ChildPath "Tests/KillerGaming.Powershell.Tests.ps1"
     Write-Host $path
 
-        $s = Invoke-PSCodeHealth -Path $pubPath -TestsPath $ProjectRoot/Tests/KillerGaming.Powershell.Tests.ps1 -HtmlReportPath $psCodeHealth -PassThru
+        $s = Invoke-PSCodeHealth -Path $pubPath -TestsPath $ProjectRoot/Tests/KillerGamingPowershell.Tests.ps1 -HtmlReportPath $psCodeHealth -PassThru
       
         Test-PSCodeHealthCompliance -HealthReport $s
       #  Remove-Module Pester -Force
