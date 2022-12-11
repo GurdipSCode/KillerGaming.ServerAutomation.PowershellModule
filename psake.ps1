@@ -20,16 +20,16 @@ Properties {
     }
 }
 
-# Task Default -Depends Test
+Task Default -Depends Init
 
-# Task Init {
-#     $lines
-#     Set-BuildEnvironment
-#     Set-Location $ProjectRoot
-#     "Build System Details:"
-#     Get-Item ENV:BH*
-#     "`n"
-# }
+Task Init {
+    $lines
+    Set-BuildEnvironment
+    Set-Location $ProjectRoot
+    "Build System Details:"
+    Get-Item ENV:BH*
+    "`n"
+}
 
 # Task Test -Depends Init  {
 #     $lines
