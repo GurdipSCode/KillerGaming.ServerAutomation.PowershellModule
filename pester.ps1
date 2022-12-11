@@ -1,4 +1,4 @@
-Import-Module Pester -MaximumVersion 5.*
+        Import-Module Pester -MaximumVersion 5.*
 
         Write-Host $env:system.teamcity.build.checkoutDir 
 
