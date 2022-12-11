@@ -157,13 +157,13 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
        # Import-Module Pester -MaximumVersion 4.*
 
-    #    $container = New-PesterContainer -Path $ProjectRoot/Tests/KillerGaming.Powershell.Tests.ps1
+       $container = New-PesterContainer -Path $ProjectRoot/Tests/KillerGamingPowershell.Tests.ps1
 
-	#	$configuration = New-PesterConfiguration
-	 #	$configuration.Run.Path     = $ProjectRoot/Tests
-	#	$configuration.Run.PassThru = $true
+	   $configuration = New-PesterConfiguration
+	   $configuration.Run.Path     = $ProjectRoot/Tests
+	   $configuration.Run.PassThru = $true
 
-    #    $configuration.Run.Container = $container
+      $configuration.Run.Container = $container
 
 	#	$testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
 
@@ -173,7 +173,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
     $path = Join-Path $ProjectRoot -ChildPath "Tests/KillerGaming.Powershell.Tests.ps1"
     Write-Host $path
 
-        $s = Invoke-PSCodeHealth -Path $pubPath -TestsPath $ProjectRoot/Tests/KillerGamingPowershell.Tests.ps1 -HtmlReportPath $psCodeHealth -PassThru
+        $s = Invoke-PSCodeHealth -Path $pubPath -TestsPath $container -HtmlReportPath $psCodeHealth -PassThru
       
         Test-PSCodeHealthCompliance -HealthReport $s
       #  Remove-Module Pester -Force
