@@ -20,7 +20,7 @@ Properties {
     }
 }
 
-Task Default -Depends Init, Test, CheckSyntax, GenerateListOfFunctions
+Task Default -Depends Init, Test, CheckSyntax, GenerateListOfFunctions, RunPSScriptAnalyzer
 
 Task Init {
     $lines
@@ -59,8 +59,10 @@ Task Test -Depends Init  {
 
 Task CheckSyntax -Depends Test {
  
-  $scripts = Get-ChildItem -Path .\KillerGaming.Powershell -Include *.ps1, *.psm1, *.psd1 -Recurse |
-  Where-Object {$_.FullName -notmatch 'powershell'}
+$lines
+
+$scripts = Get-ChildItem -Path .\KillerGaming.Powershell -Include *.ps1, *.psm1, *.psd1 -Recurse |
+Where-Object {$_.FullName -notmatch 'powershell'}
 
 # TestCases are splatted to the script so we need hashtables
 $testCases = $scripts | Foreach-Object {@{file = $_}}
@@ -79,6 +81,8 @@ $file.FullName | Should Exist
 
 
 Task GenerateListOfFunctions -Depends CheckSyntax {
+
+    $lines
     
     $modulePath =  Get-Item Env:BHModulePath | select -ExpandProperty Value
     $moduleManifest = Get-Item Env:BHPSModuleManifest | select -ExpandProperty Value
@@ -115,37 +119,39 @@ Task GenerateListOfFunctions -Depends CheckSyntax {
  }
 
 
-# Task RunPSScriptAnalyzer -Depends GenerateListOfFunctions {
+Task RunPSScriptAnalyzer -Depends GenerateListOfFunctions {
 
-# 		try
-# 		{
-# 			$outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
-# 			Write-Host $outputDIR
-# 			$psscriptAnalyzerDir = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer\psscriptanalyzer.csv"
-# 			$psscriptAnalyzerHtml = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer"
+		try
+		{
+            $lines 
+            
+			$outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
+			Write-Host $outputDIR
+			$psscriptAnalyzerDir = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer\psscriptanalyzer.csv"
+			$psscriptAnalyzerHtml = Join-Path -Path $outputDIR -ChildPath "PSScriptAnalyzer"
 			
-# 			$results = Invoke-ScriptAnalyzer -Path .\KillerGaming.Powershell\Public -Recurse -ErrorAction Stop | Export-Csv $psscriptAnalyzerDir
+			$results = Invoke-ScriptAnalyzer -Path .\KillerGaming.Powershell\Public -Recurse -ErrorAction Stop | Export-Csv $psscriptAnalyzerDir
 			
-# 			cd C:\Scripts\
-# 			.\PSScriptAnalyzerReporter.ps1 -OutputPath $psscriptAnalyzerHtml -CsvPath $psscriptAnalyzerDir
-# 			$results
-# 		}
+			cd C:\Scripts\
+			.\PSScriptAnalyzerReporter.ps1 -OutputPath $psscriptAnalyzerHtml -CsvPath $psscriptAnalyzerDir
+			$results
+		}
 
-# 		catch
-# 		{
-# 			Write-Error -Message $_
-# 			exit 1
-# 		}
-# 		if ($results.Count -gt 0)
-# 		{
-# 			Write-Host "Analysis of your code threw $($results.Count) warnings or errors. Please go back and check your code."
-# 			exit 1
-# 		}
-# 		else
-# 		{
-# 			Write-Host 'Awesome code! No issues found!' -Foregroundcolor green
-# 		}
-# }
+		catch
+		{
+			Write-Error -Message $_
+			exit 1
+		}
+		if ($results.Count -gt 0)
+		{
+			Write-Host "Analysis of your code threw $($results.Count) warnings or errors. Please go back and check your code."
+			exit 1
+		}
+		else
+		{
+			Write-Host 'Awesome code! No issues found!' -Foregroundcolor green
+		}
+}
 
 # Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
