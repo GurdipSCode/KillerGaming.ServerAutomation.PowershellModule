@@ -1,5 +1,6 @@
 Import-Module Pester -MaximumVersion 5.*
 
+        Write-Host $env:system.teamcity.build.checkoutDir 
 
 		$configuration              = [PesterConfiguration]::Default
 		$configuration.Run.Path     = $env:system.teamcity.build.checkoutDir + "\Tests\KillerGaming.Powershell.Tests.ps1"
