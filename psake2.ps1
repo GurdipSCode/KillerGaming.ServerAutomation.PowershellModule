@@ -39,10 +39,9 @@ Task RunPSCodeHealth -Depends Init {
         $testResultsPath = Join-Path $outputDIR -ChildPath "testResults/testResult.xml"
         Write-Host $testResultsPath
 
-if (Get-Module -ListAvailable -Name Pester) {
-    Remove-Module Pester -Force
-} 
 
+
+Install-Module -Name Pester -RequiredVersion 4.0.2 -Force -SkipPublisherCheck
 Import-Module -Name Pester -RequiredVersion 4.0.2
 
 
