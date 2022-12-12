@@ -185,27 +185,6 @@ $testResult = Invoke-Pester -Configuration $PesterConfig | ConvertTo-Pester4Resu
 
 }
 
-Task RunPSCodeHealth -Depends Pester {
-
-
-        $lines
-
-       $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
-
-        
-        $testResultsPath = Join-Path $outputDIR -ChildPath "TestResults/testResult.xml"
-        Write-Host $testResultsPath
-
-Uninstall-Module Pester -Force
-Import-Module Pester -RequiredVersion 4.0.2
-
-$ser = Get-Content $testResultsPath
-$testResult = [System.Management.Automation.PSSerializer]::Deserialize($ser)
-
-$d = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult
-
-$d
-}
 
 # Task SetVersion -Depends RunPSCodeHealth {
 
