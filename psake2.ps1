@@ -25,6 +25,8 @@ Task Init {
     Set-Location $ProjectRoot
     "Build System Details:"
     Get-Item ENV:BH*
+    
+Remove-Module Pester -Force
     "`n"
 }
 
@@ -39,7 +41,6 @@ Task RunPSCodeHealth -Depends Init {
         
         $testResultsPath = Join-Path $outputDIR -ChildPath "testResults/testResult.xml"
         Write-Host $testResultsPath
-
 
 
 Install-Module -Name Pester -RequiredVersion 4.0.2 -Force -SkipPublisherCheck
