@@ -165,8 +165,9 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 	   $configuration = New-PesterConfiguration
 	   $configuration.Run.Path     = $path
 	   $configuration.Run.PassThru = $true
+       $configuration.CodeCoverage = $true
        $configuration.OutputFile = "test.xml"
-       $configuration.OutputFormat = "NUnitXML"
+       $configuration.OutputFormat = "JaCoCo"
        
 
   #    $configuration.Run.Container = $container
