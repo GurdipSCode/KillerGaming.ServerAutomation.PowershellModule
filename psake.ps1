@@ -143,6 +143,7 @@ Task RunPSScriptAnalyzer -Depends GenerateListOfFunctions {
 Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
         $lines 
+
         $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
         $psCodeHealth = Join-Path -Path $outputDIR -ChildPath "PSCodeHealth\HealthReport.html"
         Write-Host $psCodeHealth
@@ -159,26 +160,38 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
    $path = Join-Path $ProjectRoot -ChildPath "Tests\KillerGamingPowershell.Tests.ps1"
 
+        
+   Import-Module Pester -MinimumVersion 5.0.0
+
+$PesterConfig = New-PesterConfiguration
+$PesterConfig.Run.Path = $path
+$PesterConfig.Run.PassThru = $true
+$PesterConfig.CodeCoverage.Enabled = $true
+$PesterConfig.CodeCoverage.OutputFormat = 'JaCoCo'
+$PesterConfig.CodeCoverage.OutputPath = "Pester-Coverage.xml"
+$PesterConfig.TestResult.OutputFormat = "NUnitXml"
+$PesterConfig.TestResult.OutputPath = "Test.xml"
+$PesterConfig.TestResult.Enabled = $true
+
+$testResult = Invoke-Pester -Configuration $PesterConfig | ConvertTo-Pester4Result
+
+ 
+Remove-Module Pester -Force
+Import-Module Pester -MaximumVersion 4.*
+
+$d = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult
+
+$d
+# $s = Invoke-Pester -CodeCoverage $path -CodeCoverageOutputFile 'Pester-Coverage.xml' -CodeCoverageOutputFileFormat JaCoCo -PassThru $true
+
+Write-Host "sss"
+
+# Invoke-Pester .\CoverageTest.Tests.ps1 -CodeCoverage @{Path = '.\CoverageTest.ps1'; StartLine = 7; EndLine = 14 }
+    
+   
+   #     Test-PSCodeHealthCompliance -HealthReport $s
        
-        $pesterConfiguration = @{
-        Run = @{
-            Path = @($path)
-        }
-        Should = @{
-            ErrorAction = 'Continue'
-        }
-        CodeCoverage = @{
-            OutputFormat = 'JaCoCo'
-            OutputEncoding = 'UTF8'
-            OutputPath = "Pester-Coverage.xml"
-            Enabled = $true
-        }
-        TestResult = @{
-            OutputPath = "Pester-Test.xml"
-            OutputFormat = 'NUnitXml'
-            OutputEncoding = 'UTF8'
-            Enabled = $true
-        }
+       
     }
  
  #
