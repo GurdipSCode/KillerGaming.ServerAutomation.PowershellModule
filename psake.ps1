@@ -160,14 +160,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
          Import-Module Pester -MaximumVersion 5.*
 
    $path = Join-Path $ProjectRoot -ChildPath ".\Tests\KillerGamingPowershell.Tests.ps1"
- 
 
-	   $configuration = New-PesterConfiguration
-	   $configuration.Run.Path     = $path
-	   $configuration.Run.PassThru = $true
-       $configuration.Run.CodeCoverage = $true
-       $configuration.Run.OutputFile = "test.xml"
-       $configuration.Run.OutputFormat = "JaCoCo"
        
         $pesterConfiguration = @{
         Run = @{
