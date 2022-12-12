@@ -164,7 +164,7 @@ Task Pester -Depends RunPSScriptAnalyzer {
    $path = Join-Path $ProjectRoot -ChildPath "Tests\KillerGamingPowershell.Tests.ps1"
 
         
-   Import-Module Pester -MinimumVersion 5.0.0
+   Import-Module Pester -RequiredVersion 5.3.3
 
 $PesterConfig = New-PesterConfiguration
 $PesterConfig.Run.Path = $path

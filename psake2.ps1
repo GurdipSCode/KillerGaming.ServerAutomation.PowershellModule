@@ -26,7 +26,7 @@ Task Init {
     "Build System Details:"
     Get-Item ENV:BH*
     
-Remove-Module Pester -Force
+Remove-Module -FullyQualifiedName @{modulename="Pester"; moduleversion="5.3.3"}
     "`n"
 }
 
