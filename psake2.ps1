@@ -39,7 +39,7 @@ Task RunPSCodeHealth -Depends Init {
         $testResultsPath = Join-Path $outputDIR -ChildPath "testResults/testResult.xml"
         Write-Host $testResultsPath
 
-Uninstall-Module Pester -Force
+Remove-Module Pester -Force
 Import-Module Pester -RequiredVersion 4.0.2
 
 $ser = Get-Content $testResultsPath
