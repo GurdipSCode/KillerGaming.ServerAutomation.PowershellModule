@@ -157,8 +157,6 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
         Set-Location $projectPath
 
-         Import-Module Pester -MaximumVersion 5.*
-
    $path = Join-Path $ProjectRoot -ChildPath ".\Tests\KillerGamingPowershell.Tests.ps1"
 
        
@@ -185,7 +183,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
   #    $configuration.Run.Container = $container
     $config = New-PesterConfiguration -Hashtable $pesterConfiguration
-	$testResult = Invoke-Pester -HashTable $config | ConvertTo-Pester4Result
+	$testResult = Invoke-Pester -Configuration $config | ConvertTo-Pester4Result
 
 	
 
