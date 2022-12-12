@@ -180,7 +180,8 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
             Enabled = $true
         }
     }
-
+ 
+ #
   #    $configuration.Run.Container = $container
     $config = New-PesterConfiguration -Hashtable $pesterConfiguration
 	$testResult = Invoke-Pester -Configuration $config | ConvertTo-Pester4Result
