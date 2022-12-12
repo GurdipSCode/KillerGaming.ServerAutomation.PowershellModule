@@ -20,7 +20,7 @@ Properties {
     }
 }
 
-Task Default -Depends Init, Test, CheckSyntax, GenerateListOfFunctions, RunPSScriptAnalyzer, Pester, RunPSCodeHealth
+Task Default -Depends Init, Test, CheckSyntax, GenerateListOfFunctions, RunPSScriptAnalyzer, Pester
 
 Task Init {
     $lines
