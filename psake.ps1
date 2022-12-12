@@ -157,7 +157,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 
         Set-Location $projectPath
 
-   $path = Join-Path $ProjectRoot -ChildPath ".\Tests\KillerGamingPowershell.Tests.ps1"
+   $path = Join-Path $ProjectRoot -ChildPath "Tests\KillerGamingPowershell.Tests.ps1"
 
        
         $pesterConfiguration = @{
@@ -187,7 +187,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 	$testResult = Invoke-Pester -Configuration $config | ConvertTo-Pester4Result
 
 	
-
+s`
  
     Write-Host $path
 
