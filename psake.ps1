@@ -170,7 +170,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 	#	$testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
 
 	#	Remove-Module Pester -Force
-	#	Import-Module Pester -MaximumVersion 4.*
+    Import-Module Pester -MaximumVersion 5.*
 
  
     Write-Host $path
