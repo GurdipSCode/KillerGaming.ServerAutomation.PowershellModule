@@ -177,7 +177,7 @@ $testResult = Invoke-Pester -Configuration $PesterConfig | ConvertTo-Pester4Resu
 
  
 Remove-Module Pester -Force
-Install-Module Pester -RequiredVersion 4.0.2 -Force -SkipPublisherCheck
+Install-Module Pester -RequiredVersion 4.0.2 -Force -SkipPublisherCheck -AllowClobber
 Import-Module Pester -RequiredVersion 4.0.2 -Force 
 
 $d = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult
