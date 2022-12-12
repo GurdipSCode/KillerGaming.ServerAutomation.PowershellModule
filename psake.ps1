@@ -169,10 +169,30 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
        $configuration.Run.OutputFile = "test.xml"
        $configuration.Run.OutputFormat = "JaCoCo"
        
+        $pesterConfiguration = @{
+        Run = @{
+            Path = @($path)
+        }
+        Should = @{
+            ErrorAction = 'Continue'
+        }
+        CodeCoverage = @{
+            OutputFormat = 'JaCoCo'
+            OutputEncoding = 'UTF8'
+            OutputPath = "Pester-Coverage.xml"
+            Enabled = $true
+        }
+        TestResult = @{
+            OutputPath = "Pester-Test.xml"
+            OutputFormat = 'NUnitXml'
+            OutputEncoding = 'UTF8'
+            Enabled = $true
+        }
+    }
 
   #    $configuration.Run.Container = $container
-
-	$testResult = Invoke-Pester -Configuration $configuration | ConvertTo-Pester4Result
+    $config = New-PesterConfiguration -Hashtable $pesterConfiguration
+	$testResult = Invoke-Pester -HashTable $config | ConvertTo-Pester4Result
 
 	
 
