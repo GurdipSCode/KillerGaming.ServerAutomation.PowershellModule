@@ -189,7 +189,7 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
  
     Write-Host $path
 
-    $Params = @{Path='.\KillerGaming.Powershell\Public\'; TestsPath=$path; Recurse=$True}
+    $Params = @{Path='.\KillerGaming.Powershell\Public\'; TestsResult=$testResult; Recurse=$True}
 
         $s = Invoke-PSCodeHealth @Params
       
