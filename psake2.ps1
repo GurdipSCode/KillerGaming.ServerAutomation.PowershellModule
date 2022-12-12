@@ -39,8 +39,12 @@ Task RunPSCodeHealth -Depends Init {
         $testResultsPath = Join-Path $outputDIR -ChildPath "testResults/testResult.xml"
         Write-Host $testResultsPath
 
-Remove-Module Pester -Force
-Import-Module Pester -RequiredVersion 4.0.2
+if (Get-Module -ListAvailable -Name Pester) {
+    Remove-Module Pester -Force
+} 
+
+Import-Module -Name Pester -RequiredVersion 4.0.2
+
 
 $ser = Get-Content $testResultsPath
 $testResult = [System.Management.Automation.PSSerializer]::Deserialize($ser)
