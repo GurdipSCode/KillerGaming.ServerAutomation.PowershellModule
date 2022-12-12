@@ -20,7 +20,7 @@ Properties {
     }
 }
 
-Task Default -Depends Init, Test, CheckSyntax, GenerateListOfFunctions, RunPSScriptAnalyzer, RunPSCodeHealth
+Task Default -Depends Init, Test, CheckSyntax, GenerateListOfFunctions, RunPSScriptAnalyzer, Pester, RunPSCodeHealth
 
 Task Init {
     $lines
@@ -140,7 +140,7 @@ Task RunPSScriptAnalyzer -Depends GenerateListOfFunctions {
 
 }
 
-Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
+Task Pester -Depends RunPSScriptAnalyzer {
 
         $lines 
 
@@ -155,6 +155,9 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
         $modulePath = Get-Item Env:BHPSModulePath | select -ExpandProperty Value
         $pubPath = Join-Path $modulePath -ChildPath "Public"
         Write-Host $pubPath
+        
+        $testResultsPath = Join-Path $outputDIR -ChildPath "TestResults"
+        Write-Host $testResultsPath
 
         Set-Location $projectPath
 
@@ -174,21 +177,36 @@ $PesterConfig.TestResult.OutputPath = "Test.xml"
 $PesterConfig.TestResult.Enabled = $true
 
 $testResult = Invoke-Pester -Configuration $PesterConfig | ConvertTo-Pester4Result
-
-Remove-Module Pester -Force
-Import-Module Pester -RequiredVersion 4.0.2
-
-$d = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult
-
-$d
-
-       
     
  
  #
   #    $configuration.Run.Container = $container
       #  Remove-Module Pester -Force
 
+}
+
+Task RunPSCodeHealth -Depends Pester {
+
+
+        $lines
+
+       $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
+
+        
+        $testResultsPath = Join-Path $outputDIR -ChildPath "TestResults/testResult.xml"
+        Write-Host $testResultsPath
+
+
+
+    Remove-Module Pester -Force
+Import-Module Pester -RequiredVersion 4.0.2
+
+$ser = Get-Content $testResultsPath
+$testResult = [System.Management.Automation.PSSerializer]::Deserialize($ser)
+
+$d = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult
+
+$d
 }
 
 # Task SetVersion -Depends RunPSCodeHealth {
