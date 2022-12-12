@@ -186,8 +186,6 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
     $config = New-PesterConfiguration -Hashtable $pesterConfiguration
 	$testResult = Invoke-Pester -Configuration $config | ConvertTo-Pester4Result
 
-	
-s`
  
     Write-Host $path
 
