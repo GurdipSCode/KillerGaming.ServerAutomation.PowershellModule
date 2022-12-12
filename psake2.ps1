@@ -28,8 +28,6 @@ Task Init {
     "`n"
 }
 
-Task Default -Depends Init, RunPSCodeHealth
-
 Task RunPSCodeHealth -Depends Init {
 
 
@@ -38,7 +36,7 @@ Task RunPSCodeHealth -Depends Init {
        $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
 
         
-        $testResultsPath = Join-Path $outputDIR -ChildPath "TestResults/testResult.xml"
+        $testResultsPath = Join-Path $outputDIR -ChildPath "testResults/testResult.xml"
         Write-Host $testResultsPath
 
 Uninstall-Module Pester -Force

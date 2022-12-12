@@ -156,7 +156,7 @@ Task Pester -Depends RunPSScriptAnalyzer {
         $pubPath = Join-Path $modulePath -ChildPath "Public"
         Write-Host $pubPath
         
-        $testResultsPath = Join-Path $outputDIR -ChildPath "TestResults"
+        $testResultsPath = Join-Path $outputDIR -ChildPath "testResults/testResult.xml"
         Write-Host $testResultsPath
 
         Set-Location $projectPath
@@ -177,8 +177,7 @@ $PesterConfig.TestResult.OutputPath = "Test.xml"
 $PesterConfig.TestResult.Enabled = $true
 
 $testResult = Invoke-Pester -Configuration $PesterConfig | ConvertTo-Pester4Result
-    
- 
+$ser = [System.Management.Automation.PSSerializer]::Serialize($testResult) | Out-File $testResultsPath
  #
   #    $configuration.Run.Container = $container
       #  Remove-Module Pester -Force
