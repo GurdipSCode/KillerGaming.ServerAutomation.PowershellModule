@@ -197,8 +197,6 @@ Task RunPSCodeHealth -Depends Pester {
         Write-Host $testResultsPath
 
 
-
-    Remove-Module Pester -Force
 Import-Module Pester -RequiredVersion 4.0.2
 
 $ser = Get-Content $testResultsPath
