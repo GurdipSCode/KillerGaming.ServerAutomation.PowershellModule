@@ -183,7 +183,7 @@ $d = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult
 
 $d
 
-       
+Remove-Module Pester
        
     
  
