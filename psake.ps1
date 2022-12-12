@@ -182,31 +182,13 @@ Import-Module Pester -MaximumVersion 4.*
 $d = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult
 
 $d
-# $s = Invoke-Pester -CodeCoverage $path -CodeCoverageOutputFile 'Pester-Coverage.xml' -CodeCoverageOutputFileFormat JaCoCo -PassThru $true
 
-Write-Host "sss"
-
-# Invoke-Pester .\CoverageTest.Tests.ps1 -CodeCoverage @{Path = '.\CoverageTest.ps1'; StartLine = 7; EndLine = 14 }
+       
+       
     
-   
-   #     Test-PSCodeHealthCompliance -HealthReport $s
-       
-       
-    }
  
  #
   #    $configuration.Run.Container = $container
-    $config = New-PesterConfiguration -Hashtable $pesterConfiguration
-	$testResult = Invoke-Pester -Configuration $config | ConvertTo-Pester4Result
-
- 
-    Write-Host $path
-
-    $Params = @{Path='.\KillerGaming.Powershell\Public\'; TestsResult=$testResult; Recurse=$True}
-
-        $s = Invoke-PSCodeHealth @Params
-      
-        Test-PSCodeHealthCompliance -HealthReport $s
       #  Remove-Module Pester -Force
 
 }
