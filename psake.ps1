@@ -164,6 +164,9 @@ Task RunPSCodeHealth -Depends RunPSScriptAnalyzer {
 	   $configuration = New-PesterConfiguration
 	   $configuration.Run.Path     = $path
 	   $configuration.Run.PassThru = $true
+       $configuration.OutputFile = "test.xml"
+       $configuration.OutputFormat = "NUnitXML"
+       
 
   #    $configuration.Run.Container = $container
 
