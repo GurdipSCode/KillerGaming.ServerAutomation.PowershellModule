@@ -176,18 +176,12 @@ $PesterConfig.TestResult.Enabled = $true
 $testResult = Invoke-Pester -Configuration $PesterConfig | ConvertTo-Pester4Result
 
 Remove-Module Pester -Force
-
-Install-Module PSCodeHealth -Force -SkipPublisherCheck -AllowClobber
-Import-Module PSCodeHealth -Force
-Install-Module Pester -RequiredVersion 4.0.2 -Force -SkipPublisherCheck -AllowClobber
-Import-Module Pester -RequiredVersion 4.0.2 -Force 
+Import-Module Pester -RequiredVersion 4.0.2
 
 $d = Invoke-PSCodeHealth -Path $pubPath -TestsResult $testResult
 
 $d
 
-Uninstall-Module PSCodeHealth PSCodeHealth -Force
-Uninstall-Module Pester -Force 
        
     
  
