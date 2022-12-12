@@ -34,7 +34,8 @@ Task RunPSCodeHealth -Depends Init {
         $lines
 
        $outputDIR = [Environment]::GetEnvironmentVariable('KillerGaming.PowershellHyperv Module Output Dir', 'Machine')
-
+        $modulePath = Get-Item Env:BHPSModulePath | select -ExpandProperty Value
+        $pubPath = Join-Path $modulePath -ChildPath "Public"
         
         $testResultsPath = Join-Path $outputDIR -ChildPath "testResults/testResult.xml"
         Write-Host $testResultsPath
